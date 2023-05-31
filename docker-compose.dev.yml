@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  lamin:
+    build:
+      context: ./
+      dockerfile: Dockerfile-dev
+    volumes:
+      - ./:/home/jovyan
+    ports:
+      - 8889:8888
