@@ -1,3 +1,4 @@
-lamindb[bionty,wetlab]
+lamindb[bionty,aws,nbproject]==0.42a5
 bionty
-ipython
+s3fs
+psycopg2-binary
