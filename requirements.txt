@@ -1,4 +1,2 @@
 lamindb[bionty,aws,nbproject]==0.42.0
-bionty
-s3fs
 psycopg2-binary
