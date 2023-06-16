@@ -8,6 +8,12 @@ Having all Lamin components Dockerized should accelerate local testing and evalu
 
 Postgres is also running in a container. The data volume is mapped to `postgres-data` so when you relaunch the containers the data should persist.
 
+## Binder
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lawrlee/lamin-docker/HEAD)
+
+This doesn't set up any postgres or MinIO containers, but does allow one to launch an environment with lamindb pre-installed.
+
 ## Prerequisites
 
 ### Docker
