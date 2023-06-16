@@ -1,12 +1,32 @@
 version: "3"
 
 services:
+  lamin:
+    build:
+      context: ./
+    environment:
+      - GRANT_SUDO=yes
+      - LAMINDB_PASSWORD
+      - AWS_PROFILE=lamin
+      - AWS_DEFAULT_REGION
+      - AWS_REGION
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SESSION_TOKEN
+      - AWS_CREDENTIAL_EXPIRATION
+    volumes:
+      - ./:/home/jovyan
+      - ~/.aws:/home/jovyan/.aws
+    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser
+    ports:
+      - 8888:8888
   postgres:
     image: postgres:14
     environment:
       POSTGRES_USER: lamin
       POSTGRES_PASSWORD: lamin_pw
       POSTGRES_DB: lamindb
+    command: postgres -c stats_temp_directory=/tmp
     ports:
       - 5432
     volumes:
@@ -22,9 +42,4 @@ services:
   #   ports:
   #     - 9090
   #     - 9001
-  lamin:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    volumes:
-      - ./:/lamin
+

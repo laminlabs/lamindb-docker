@@ -1,2 +1,2 @@
-lamindb[bionty,aws,nbproject]==0.42.0
+lamindb[bionty,aws,nbproject]==0.43.0
 psycopg2-binary
