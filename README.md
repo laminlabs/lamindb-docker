@@ -1,60 +1,16 @@
-# Lamin + Docker
+# LaminDB Docker
 
-A rough attempt at Dockerizing the components of Lamin
+A sample basic docker container with LaminDB components installed.
 
-## Introduction
+## Get started
 
-Having all Lamin components Dockerized should accelerate local testing and evaluation of Lamin. We can launch a Postgres container for the database component and use [MinIO](https://hub.docker.com/r/minio/minio/) as an S3-compatible backend.
+You will need to have `Docker` and `docker compose` installed on your system. The easiest way is to install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
-Postgres is also running in a container. The data volume is mapped to `postgres-data` so when you relaunch the containers the data should persist.
-
-## Binder
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lawrlee/lamin-docker/HEAD)
-
-This doesn't set up any postgres or MinIO containers, but does allow one to launch an environment with lamindb pre-installed.
-
-## Prerequisites
-
-### Docker
-
-You will need to have `Docker` and `docker compose` installed on your system. Easiest way is to install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-
-### AWS
-
-Since you will need to access AWS resources when working with a Lamin instance, you will need to pass your AWS credentials to the Docker container via environment variables or your `~/.aws` folder. Make sure your `~/.aws/config` contains the `lamin` profile (or you can name it whatever you want, but you will have to update the value in the docker-compose.yml accordingly):
+In the root of this repository, put a `.env` file with your lamin.ai password
 
 ```
-[profile lamin]
-region=us-east-1
-```
-
-and your `~/.aws/credentials` contains your CLI secrets:
-
-```
-[lamin]
-aws_access_key_id = **********
-aws_secret_access_key = **********
-```
-
-### AWS Vault
-
-Even, better, use [AWS Vault](https://github.com/99designs/aws-vault) to secure your credentials using your system's keystore so there are no plaintext secrets on your file system.
-
-```
-$ aws-vault add lamin
-Enter Access Key Id: ********
-Enter Secret Key: ********
-```
-
-## Getting Started
-
-Environment
-
-Need a `.env` file with your LaminDB password
-
-```
-LAMINDB_PASSWORD=**********************
+# .env
+LAMIN_PASSWORD=**********************
 ```
 
 Build image
@@ -69,14 +25,62 @@ Launch a Jupyter notebook on top of stack
 $ docker compose up
 ```
 
-of if you use AWS Vault (you will be prompted to enter your system password)
+This will create a notebook launched in the container that can be accessed via localhost:8888 (make sure you don't have duplicate Jupyter notebooks running on that port)
+
+
+## Configuration
+
+### AWS
+
+Since you might need to access AWS resources when working with a Lamin instance, you will need to pass your AWS credentials to the Docker container via environment variables or your `~/.aws` folder.
+
+#### Plain text
+
+Make sure your `~/.aws/config` contains the `lamin` profile (or you can name it whatever you want, but you will have to update the value in the docker-compose.yml accordingly):
+
+```
+[profile lamin]
+region=us-east-1
+```
+
+and your `~/.aws/credentials` contains your CLI secrets:
+
+```
+[lamin]
+aws_access_key_id = **********
+aws_secret_access_key = **********
+```
+
+#### AWS Vault
+
+Even, better, use [AWS Vault](https://github.com/99designs/aws-vault) to secure your credentials using your system's keystore so there are no plaintext secrets on your file system.
+
+```
+$ aws-vault add lamin
+Enter Access Key Id: ********
+Enter Secret Key: ********
+```
+
+If you use AWS Vault (you will be prompted to enter your system password)
 
 ```
 $ aws-vault exec lamin -- docker compose up
 ```
 
-This will create a notebook launched in the container that can be accessed via localhost:8888 (make sure you don't have duplicate Jupyter notebooks running on that port)
 
-## Issues
+## Postgres
 
-MinIO isn't working yet. To use the MinIO container we will need to pass the container endpoint to LaminDB.
+We can launch a Postgres container for the database component. The data volume is mapped to `postgres-data` so when you relaunch the containers the data persists.
+
+
+## Mock S3 for testing
+
+We will then use [MinIO](https://hub.docker.com/r/minio/minio/) as an S3-compatible backend. MinIO isn't working yet. To use the MinIO container we will need to pass the container endpoint to LaminDB.
+
+
+## Binder
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lawrlee/lamin-docker/HEAD)
+
+This doesn't set up any postgres or MinIO containers, but does allow one to launch an environment with lamindb pre-installed.
+
