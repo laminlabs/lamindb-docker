@@ -2,16 +2,10 @@
 
 A sample basic docker container with LaminDB components installed.
 
+
 ## Get started
 
 You will need to have `Docker` and `docker compose` installed on your system. The easiest way is to install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
-
-In the root of the directory where your `Dockerfile` is contained (e.g. [here](configurations/aws-bionty-jupyter-postgres/)), put a `.env` file with your lamin.ai password:
-
-```
-# .env
-LAMIN_PASSWORD=**********************
-```
 
 Build image:
 
@@ -19,13 +13,11 @@ Build image:
 $ docker compose build
 ```
 
-Launch a Jupyter notebook on top of stack:
+Launch Jupyter Lab:
 
 ```
 $ docker compose up
 ```
-
-This will create a notebook launched in the container that can be accessed via localhost:8888 (make sure you don't have duplicate Jupyter notebooks running on that port).
 
 
 ## Configurations
