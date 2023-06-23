@@ -11,4 +11,4 @@ RUN apt-get update \
 
 USER jovyan
 
-RUN pip install lamindb[bionty,jupyter]==0.44.1
+RUN pip install lamindb[bionty,jupyter]==0.44.2
