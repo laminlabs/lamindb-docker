@@ -1,13 +1,20 @@
 # LaminDB Docker
 
-A sample basic docker container with LaminDB components installed.
+Basic docker container configurations with LaminDB components installed.
+
+## Configurations
+
+- [bionty-jupyter](configurations/bionty-jupyter/): Bionty + SQLite + Jupyter Notebook tracking (all local)
+- [aws-bionty-jupyter-postgres](configurations/aws-bionty-jupyter-postgres/): AWS, Bionty, Jupyter Notebook tracking & Postgres
 
 
-## Get started
+## Build & launch container
 
 You will need to have `Docker` and `docker compose` installed on your system. The easiest way is to install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
-Build image:
+Choose a configuration, navigate into the corresponding subdirectory of [configurations/](configurations).
+
+To build the container:
 
 ```
 $ docker compose build
@@ -18,13 +25,6 @@ Launch Jupyter Lab:
 ```
 $ docker compose up
 ```
-
-
-## Configurations
-
-### aws-bionty-jupyter-postgres
-
-This installs components for connecting to AWS, Bionty, Jupyter Notebook Tracking & Postgres.
 
 ## Components
 
@@ -70,12 +70,12 @@ $ aws-vault exec lamin -- docker compose up
 ```
 
 
-## Postgres
+### Postgres
 
 We can launch a Postgres container for the database component. The data volume is mapped to `postgres-data` so when you relaunch the containers the data persists.
 
 
-## MinIO
+### MinIO
 
 We will then use [MinIO](https://hub.docker.com/r/minio/minio/) as an S3-compatible backend. MinIO isn't working yet. To use the MinIO container we will need to pass the container endpoint to LaminDB. It's commented out in the `aws-bionty-jupyter-postgres` config.
 
