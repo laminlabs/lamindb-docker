@@ -6,29 +6,35 @@ A sample basic docker container with LaminDB components installed.
 
 You will need to have `Docker` and `docker compose` installed on your system. The easiest way is to install [Docker Desktop](https://www.docker.com/products/docker-desktop/).
 
-In the root of this repository, put a `.env` file with your lamin.ai password
+In the root of the directory where your `Dockerfile` is contained (e.g. [here](configurations/aws-bionty-jupyter-postgres/)), put a `.env` file with your lamin.ai password:
 
 ```
 # .env
 LAMIN_PASSWORD=**********************
 ```
 
-Build image
+Build image:
 
 ```
 $ docker compose build
 ```
 
-Launch a Jupyter notebook on top of stack
+Launch a Jupyter notebook on top of stack:
 
 ```
 $ docker compose up
 ```
 
-This will create a notebook launched in the container that can be accessed via localhost:8888 (make sure you don't have duplicate Jupyter notebooks running on that port)
+This will create a notebook launched in the container that can be accessed via localhost:8888 (make sure you don't have duplicate Jupyter notebooks running on that port).
 
 
-## Configuration
+## Configurations
+
+### aws-bionty-jupyter-postgres
+
+This installs components for connecting to AWS, Bionty, Jupyter Notebook Tracking & Postgres.
+
+## Components
 
 ### AWS
 
@@ -73,9 +79,9 @@ $ aws-vault exec lamin -- docker compose up
 We can launch a Postgres container for the database component. The data volume is mapped to `postgres-data` so when you relaunch the containers the data persists.
 
 
-## Mock S3 for testing
+## MinIO
 
-We will then use [MinIO](https://hub.docker.com/r/minio/minio/) as an S3-compatible backend. MinIO isn't working yet. To use the MinIO container we will need to pass the container endpoint to LaminDB.
+We will then use [MinIO](https://hub.docker.com/r/minio/minio/) as an S3-compatible backend. MinIO isn't working yet. To use the MinIO container we will need to pass the container endpoint to LaminDB. It's commented out in the `aws-bionty-jupyter-postgres` config.
 
 
 ## Binder
