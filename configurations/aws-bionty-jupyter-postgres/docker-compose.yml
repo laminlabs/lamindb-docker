@@ -1,12 +1,12 @@
 version: "3"
 
 services:
-  lamin:
+  lamindb:
     build:
       context: ./
     environment:
       - GRANT_SUDO=yes
-      - LAMINDB_PASSWORD
+      - LAMIN_PASSWORD
       - AWS_PROFILE=lamin
       - AWS_DEFAULT_REGION
       - AWS_REGION

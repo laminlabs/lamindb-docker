@@ -1,0 +1,2 @@
+lamindb[bionty,aws,jupyter]==0.44.1
+psycopg2-binary
