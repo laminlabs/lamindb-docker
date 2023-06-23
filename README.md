@@ -36,6 +36,10 @@ This installs components for connecting to AWS, Bionty, Jupyter Notebook Trackin
 
 ## Components
 
+### Jupyter notebooks
+
+We use [jupyter/base-notebook](https://hub.docker.com/r/jupyter/base-notebook).
+
 ### AWS
 
 Since you might need to access AWS resources when working with a Lamin instance, you will need to pass your AWS credentials to the Docker container via environment variables or your `~/.aws` folder.
