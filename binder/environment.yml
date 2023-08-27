@@ -1,10 +1,8 @@
-name: lamin-environment
+name: lamindb-environment
 channels:
   - conda-forge
 dependencies:
-  - python==3.10
-  - numpy
-  - pandas
+  - python==3.11
   - pip
   - pip:
-      - lamindb[bionty,aws,nbproject]==0.43.0
+      - lamindb[bionty,aws,nbproject]==0.51.0

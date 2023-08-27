@@ -11,4 +11,7 @@ RUN apt-get update \
 
 USER jovyan
 
-RUN pip install lamindb[bionty,jupyter]==0.44.2
+RUN pip install lamindb[bionty,jupyter]==0.51.0
+
+RUN lamin login testuser1@lamin.ai --password cEvcwMJFX4OwbsYVaMt2Os6GxxGgDUlBGILs2RyS
+RUN lamin login testuser2@lamin.ai --password goeoNJKE61ygbz1vhaCVynGERaRrlviPBVQsjkhz

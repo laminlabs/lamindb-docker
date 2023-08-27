@@ -85,4 +85,3 @@ We will then use [MinIO](https://hub.docker.com/r/minio/minio/) as an S3-compati
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lawrlee/lamin-docker/HEAD)
 
 This doesn't set up any postgres or MinIO containers, but does allow one to launch an environment with lamindb pre-installed.
-

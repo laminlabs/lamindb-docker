@@ -16,5 +16,7 @@ RUN sudo ./aws/install
 
 USER jovyan
 
-ADD requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt
+RUN pip install lamindb[bionty,aws,jupyter]
+
+RUN lamin login testuser1@lamin.ai --password cEvcwMJFX4OwbsYVaMt2Os6GxxGgDUlBGILs2RyS
+RUN lamin login testuser2@lamin.ai --password goeoNJKE61ygbz1vhaCVynGERaRrlviPBVQsjkhz
