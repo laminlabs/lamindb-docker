@@ -1,0 +1,48 @@
+name: Publish to ghcr
+
+on:
+  push:
+    branches:
+      - release
+  release:
+    types:
+      - created
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Custom tag for the image'
+        required: true
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: lamin-minimal
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: configurations/bionty-jupyter/Dockerfile
+          push: true
+          tags: |
+            latest,
+            ${{ github.event.release.tag_name }},  # Using the release tag as a tag
+            ${{ inputs.tag }}   # Using the custom tag from workflow dispatch
+        env:
+          DOCKER_BUILDKIT: 1
