@@ -1,9 +1,6 @@
 name: Publish to ghcr
 
 on:
-  push:
-    branches:
-      - release
   release:
     types:
       - created
@@ -20,9 +17,17 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       packages: write
+
+    strategy:
+      matrix:
+        dockerfile:
+          - configurations/bionty-jupyter/Dockerfile
+          - configurations/aws-bionty-jupyter-postgres/Dockerfile
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -38,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: configurations/bionty-jupyter/Dockerfile
+          file: ${{ matrix.dockerfile }}
           push: true
           tags: |
             latest
