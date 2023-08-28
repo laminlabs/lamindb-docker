@@ -41,8 +41,8 @@ jobs:
           file: configurations/bionty-jupyter/Dockerfile
           push: true
           tags: |
-            latest,
-            ${{ github.event.release.tag_name }},  # Using the release tag as a tag
-            ${{ inputs.tag }}   # Using the custom tag from workflow dispatch
+            latest
+            ${{ github.event.release.tag_name }}
+            ${{ inputs.tag }}
         env:
           DOCKER_BUILDKIT: 1
