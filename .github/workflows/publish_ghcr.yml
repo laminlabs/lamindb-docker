@@ -36,9 +36,9 @@ jobs:
         id: set_image_name
         run: |
           if [ "${{ matrix.dockerfile }}" == "configurations/bionty-jupyter/Dockerfile" ]; then
-            echo "IMAGE_NAME=lamin-bionty-jupyter" >> $GITHUB_ENV
+            echo "IMAGE_NAME=lamin/lamin-bionty-jupyter" >> $GITHUB_ENV
           elif [ "${{ matrix.dockerfile }}" == "configurations/aws-bionty-jupyter-postgres/Dockerfile" ]; then
-            echo "IMAGE_NAME=lamin-aws-bionty-jupyter-postgres" >> $GITHUB_ENV
+            echo "IMAGE_NAME=lamin/lamin-aws-bionty-jupyter-postgres" >> $GITHUB_ENV
           fi
 
       - name: Log in to the Container registry
