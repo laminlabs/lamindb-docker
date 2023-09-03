@@ -4,11 +4,10 @@ on:
   release:
     types:
       - created
+  push:
+    tags:
+      - '*'
   workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Custom tag for the image'
-        required: true
 
 env:
   REGISTRY: ghcr.io
