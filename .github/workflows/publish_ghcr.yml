@@ -56,7 +56,6 @@ jobs:
           push: true
           tags: |
             latest
-            ${{ env.IMAGE_NAME }}:${{ github.event.release.tag_name }}
             ${{ env.IMAGE_NAME }}:${{ inputs.tag }}
         env:
           DOCKER_BUILDKIT: 1
