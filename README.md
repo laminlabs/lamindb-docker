@@ -12,7 +12,13 @@ Basic docker container configurations with LaminDB components installed.
   If you don't have postgres already running, we recommend the setup through docker-compose (see below).
 
 Generally, specific versions of lamindb can be pull by replacing 'latest' with the desired version.
-For example, `docker pull ghcr.io/laminlabs/lamin-bionty-jupyter:0.51.0` will pull version `0.51.0`
+For example, `docker pull ghcr.io/laminlabs/lamin-bionty-jupyter:0.51.0` will pull version `0.51.0`.
+
+## Mount Lamin volume
+
+When launching containers directly without docker-compose it is advisable to mount the `~/.lamin` directory for persistence with existing configurations.
+
+`docker run -v ~/.lamin:/home/jovyan/.lamin ghcr.io/laminlabs/lamin-bionty-jupyter:latest`
 
 ## Build & launch containers with docker-compose
 
