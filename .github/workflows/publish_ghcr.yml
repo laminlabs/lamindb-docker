@@ -73,7 +73,7 @@ jobs:
           context: .
           file: ${{ matrix.dockerfile }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}  # See https://github.com/docker/metadata-action#basic for information on tags
           labels: ${{ steps.meta.outputs.labels }}
         env:
           DOCKER_BUILDKIT: 1
