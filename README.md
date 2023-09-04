@@ -5,9 +5,11 @@ Basic docker container configurations with LaminDB components installed.
 ## Available containers
 
 - [bionty-jupyter](configurations/bionty-jupyter/): lamindb, Bionty, SQLite, Jupyter Notebook tracking (all local)
+
   Pull with `docker pull ghcr.io/laminlabs/lamin-bionty-jupyter:latest`
 
 - [aws-bionty-jupyter-postgres](configurations/aws-bionty-jupyter-postgres/): AWS, Bionty, Jupyter Notebook tracking & Postgres
+
   Pull with `docker pull ghcr.io/laminlabs/lamin-aws-bionty-jupyter-postgres:latest`.
   If you don't have postgres already running, we recommend the setup through docker-compose (see below).
 
