@@ -4,7 +4,7 @@ USER root
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    curl unzip \
+    git curl unzip \
     && apt-get autoremove -yqq --purge \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -16,7 +16,7 @@ RUN sudo ./aws/install
 
 USER jovyan
 
-RUN pip install lamindb[bionty,aws,jupyter]
+RUN pip install lamindb[bionty,aws,jupyter]==0.52.1
 
 RUN lamin login testuser1@lamin.ai --password cEvcwMJFX4OwbsYVaMt2Os6GxxGgDUlBGILs2RyS
 RUN lamin login testuser2@lamin.ai --password goeoNJKE61ygbz1vhaCVynGERaRrlviPBVQsjkhz
