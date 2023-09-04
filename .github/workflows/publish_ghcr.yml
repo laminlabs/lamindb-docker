@@ -7,6 +7,10 @@ on:
   push:
     tags:
       - '*'
+  pull_request:
+    types:
+      - opened
+      - synchronize
   workflow_dispatch:
 
 env:
@@ -52,6 +56,16 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: |
+            /root/.docker
+            /var/lib/docker
+          key: docker-${{ runner.os }}-${{ hashFiles(matrix.dockerfile) }}
+          restore-keys: |
+            docker-${{ runner.os }}-
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
