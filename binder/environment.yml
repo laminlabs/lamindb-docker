@@ -5,4 +5,4 @@ dependencies:
   - python==3.11
   - pip
   - pip:
-      - lamindb[bionty,aws,nbproject]==0.51.0
+      - lamindb[bionty,aws,nbproject]==0.58.0
