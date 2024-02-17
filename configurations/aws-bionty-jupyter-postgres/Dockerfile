@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:python-3.10
+FROM jupyter/base-notebook:python-3.11
 
 USER root
 
@@ -16,7 +16,4 @@ RUN sudo ./aws/install
 
 USER jovyan
 
-RUN pip install lamindb[bionty,aws,jupyter]==0.58.0
-
-RUN lamin login testuser1@lamin.ai --password cEvcwMJFX4OwbsYVaMt2Os6GxxGgDUlBGILs2RyS
-RUN lamin login testuser2@lamin.ai --password goeoNJKE61ygbz1vhaCVynGERaRrlviPBVQsjkhz
+RUN pip install lamindb[bionty,aws,jupyter]==0.67.3
